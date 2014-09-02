@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
 )
 
 func echo(w http.ResponseWriter, r *http.Request) {
@@ -12,7 +11,6 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	f, ok := w.(http.Flusher)
 	if ok {
 		for i := 1; i <= 10; i++ {
-			time.Sleep(200 * time.Millisecond)
 			fmt.Fprintln(w, fmt.Sprintf(`{"status":"ok","progress":%d}`, i*10))
 			f.Flush()
 		}
